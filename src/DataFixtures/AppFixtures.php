@@ -17,7 +17,7 @@ class AppFixtures extends Fixture
             $cat = array('femme', 'homme', 'enfant', 'maison', 'media_loisir', 'autre');
             $rand = array_rand($cat, 1);
 
-            $produit = new Produit;@                                                                                                    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                                                                                                   
+            $produit = new Produit;
             $produit->setCategorie($rand)
                     ->setUser()
                     ->setTitre("Cadeau n° $i")
