@@ -44,6 +44,16 @@ class Produit
      */
     private $categorie;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $CreeLe;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +115,30 @@ class Produit
     public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCreeLe(): ?\DateTimeInterface
+    {
+        return $this->CreeLe;
+    }
+
+    public function setCreeLe(\DateTimeInterface $CreeLe): self
+    {
+        $this->CreeLe = $CreeLe;
 
         return $this;
     }
