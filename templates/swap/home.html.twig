@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+
+<!-- Navigation CATEGORIES -->
+
+<ul class="nav nav-tabs mt-2">
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#femmes">Femmes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#hommes">Hommes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#enfants">Enfants</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#maison">Maison</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#medias">Multimédias/loisirs</a>
+  </li>
+</ul>
+
+<!-- End Navigation CATEGORIES -->
+
+<!-- Wrapper -->
+<div class="container">
+  <div class="row mt-5">
+    <div class="col">
+      <div class="example-wrapper">
+          <h1>Hello! </h1>
+
+          This friendly message is coming from:
+          <ul>
+              <li>Your controller at <code><a href="{{ 'C:/Users/chou/Desktop/swap/src/Controller/SwapController.php'|file_link(0) }}">src/Controller/SwapController.php</a></code></li>
+              <li>Your template at <code><a href="{{ 'C:/Users/chou/Desktop/swap/templates/swap/index.html.twig'|file_link(0) }}">templates/swap/index.html.twig</a></code></li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End Wrapper -->
+
+{% endblock %}
