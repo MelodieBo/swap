@@ -18,6 +18,7 @@ class Produit
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
      */
     private $titre;
 
