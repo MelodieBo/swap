@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
@@ -33,19 +36,14 @@ class Produit
     private $valeur;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\user", inversedBy="produit")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="produit")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="produit")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $categorie;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $image;
 
@@ -53,6 +51,12 @@ class Produit
      * @ORM\Column(type="datetime")
      */
     private $CreeLe;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
 
     public function getId(): ?int
     {
@@ -107,18 +111,6 @@ class Produit
         return $this;
     }
 
-    public function getCategorie(): ?Categorie
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(?Categorie $categorie): self
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
-
     public function getImage(): ?string
     {
         return $this->image;
@@ -139,6 +131,18 @@ class Produit
     public function setCreeLe(\DateTimeInterface $CreeLe): self
     {
         $this->CreeLe = $CreeLe;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }
