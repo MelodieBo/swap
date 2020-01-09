@@ -36,11 +36,7 @@ class Produit
      */
     private $valeur;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="produit")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
+   
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -101,17 +97,7 @@ class Produit
         return $this;
     }
 
-    public function getUser(): ?user
-    {
-        return $this->user;
-    }
-
-    public function setUser(?user $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
+    
 
     public function getImage(): ?string
     {
