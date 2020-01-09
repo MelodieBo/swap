@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {% endblock %}
+
+{% block body %}
+{{ form_start(produit_form,{'attr': {'class':'custom_class'}}) }}
+{{ form(produit_form)}}
+{{ form_end(produit_form)}}
+{% endblock %}

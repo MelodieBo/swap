@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -53,10 +54,11 @@ class Produit
     private $CreeLe;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="produits")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="produit")
      */
     private $categorie;
+
+   
 
     public function getId(): ?int
     {
@@ -146,4 +148,6 @@ class Produit
 
         return $this;
     }
+
+    
 }
