@@ -33,7 +33,7 @@ class Produit
     private $valeur;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\user", inversedBy="produit")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="produit")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;

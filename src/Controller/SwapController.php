@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SwapController extends AbstractController
 {
     /**
-     * @Route("/swap", name="swap")
+     * @Route("/", name="home")
      */
     public function index()
     {
@@ -16,4 +16,6 @@ class SwapController extends AbstractController
             'controller_name' => 'SwapController',
         ]);
     }
+
+    
 }

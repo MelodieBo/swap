@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -20,6 +21,7 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @Assert\Unique(message ="L'email n'est pas validé !")
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
@@ -41,6 +43,7 @@ class User implements UserInterface
     private $adresse;
 
     /**
+     * @Assert\Regex(pattern="/^\+33\(0\)[0-9]{10}$/", message="Veuillez entrer un numero tel correct !!!") 
      * @ORM\Column(type="integer")
      */
     private $telephone;
@@ -51,6 +54,7 @@ class User implements UserInterface
     private $ville;
 
     /**
+     * @Assert\Regex(pattern="/^[0-9]{5}$/", message="Code postal n'est pas validé !") 
      * @ORM\Column(type="integer")
      */
     private $code_postale;
