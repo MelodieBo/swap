@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
@@ -39,7 +42,18 @@ class Produit
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="produit")
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $CreeLe;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="produits")
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
@@ -93,6 +107,30 @@ class Produit
     public function setUser(?user $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCreeLe(): ?\DateTimeInterface
+    {
+        return $this->CreeLe;
+    }
+
+    public function setCreeLe(\DateTimeInterface $CreeLe): self
+    {
+        $this->CreeLe = $CreeLe;
 
         return $this;
     }

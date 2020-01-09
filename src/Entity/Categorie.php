@@ -19,43 +19,18 @@ class Categorie
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $femme;
+    private $libelle;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Produit", mappedBy="categorie")
      */
-    private $homme;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $enfant;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $maison;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $media_loisir;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $autre;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\produit", mappedBy="categorie", orphanRemoval=true)
-     */
-    private $produit;
+    private $produits;
 
     public function __construct()
     {
-        $this->produit = new ArrayCollection();
+        $this->produits = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -63,100 +38,40 @@ class Categorie
         return $this->id;
     }
 
-    public function getFemme(): ?string
+    public function getLibelle(): ?string
     {
-        return $this->femme;
+        return $this->libelle;
     }
 
-    public function setFemme(?string $femme): self
+    public function setLibelle(string $libelle): self
     {
-        $this->femme = $femme;
-
-        return $this;
-    }
-
-    public function getHomme(): ?string
-    {
-        return $this->homme;
-    }
-
-    public function setHomme(?string $homme): self
-    {
-        $this->homme = $homme;
-
-        return $this;
-    }
-
-    public function getEnfant(): ?string
-    {
-        return $this->enfant;
-    }
-
-    public function setEnfant(?string $enfant): self
-    {
-        $this->enfant = $enfant;
-
-        return $this;
-    }
-
-    public function getMaison(): ?string
-    {
-        return $this->maison;
-    }
-
-    public function setMaison(?string $maison): self
-    {
-        $this->maison = $maison;
-
-        return $this;
-    }
-
-    public function getMediaLoisir(): ?string
-    {
-        return $this->media_loisir;
-    }
-
-    public function setMediaLoisir(?string $media_loisir): self
-    {
-        $this->media_loisir = $media_loisir;
-
-        return $this;
-    }
-
-    public function getAutre(): ?string
-    {
-        return $this->autre;
-    }
-
-    public function setAutre(?string $autre): self
-    {
-        $this->autre = $autre;
+        $this->libelle = $libelle;
 
         return $this;
     }
 
     /**
-     * @return Collection|produit[]
+     * @return Collection|Produit[]
      */
-    public function getProduit(): Collection
+    public function getProduits(): Collection
     {
-        return $this->produit;
+        return $this->produits;
     }
 
-    public function addProduit(produit $produit): self
+    public function addProduit(Produit $produit): self
     {
-        if (!$this->produit->contains($produit)) {
-            $this->produit[] = $produit;
+        if (!$this->produits->contains($produit)) {
+            $this->produits[] = $produit;
             $produit->setCategorie($this);
         }
 
         return $this;
     }
 
-    public function removeProduit(produit $produit): self
+    public function removeProduit(Produit $produit): self
     {
-        if ($this->produit->contains($produit)) {
-            $this->produit->removeElement($produit);
+        if ($this->produits->contains($produit)) {
+            $this->produits->removeElement($produit);
             // set the owning side to null (unless already changed)
             if ($produit->getCategorie() === $this) {
                 $produit->setCategorie(null);

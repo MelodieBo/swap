@@ -57,8 +57,8 @@ class SecurityController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('home');
-            return $this->addFlash('success', 'votre insciption est bien fait, veuillez connecter au boutton login !');
+            $this->addFlash('success', 'Votre compte à bien été enregistré.');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('security/register.html.twig');

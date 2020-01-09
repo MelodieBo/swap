@@ -20,7 +20,6 @@
                     {% if is_granted('ROLE_USER') %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
-                        
                     </li>
                     {% else %}
                     <li class="nav-item {% if mainNavLogin is defined %}active{% endif %}">
@@ -30,9 +29,6 @@
                         <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
                     </li>
                     {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
                 </ul>
                 
                 <form class="form-inline my-2 my-lg-0">
@@ -44,5 +40,8 @@
 
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+
     </body>
 </html>
+
+
