@@ -1,6 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ title }}{% endblock %}
+{% block stylesheets %}
+
+  <style>
+    body, html {
+      height: 100%;
+    }
+    .main {
+      /* The image used */
+      background-image: url("https://cdn.pixabay.com/photo/2016/05/28/00/06/gift-1420830_1280.jpg");
+
+      /* Half height */
+      height: 50vh;
+
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+  </style>
+
+{% endblock %}
 
 {% block body %}
 
@@ -30,18 +52,13 @@
 <!-- End Navigation CATEGORIES -->
 
 <!-- Wrapper -->
-<div class="container">
-  <div class="row mt-5">
-    <div class="col">
-      <div class="example-wrapper">
-          <h1>Hello! </h1>
-
-          This friendly message is coming from:
-          <ul>
-              <li>Your controller at <code><a href="{{ 'C:/Users/chou/Desktop/swap/src/Controller/SwapController.php'|file_link(0) }}">src/Controller/SwapController.php</a></code></li>
-              <li>Your template at <code><a href="{{ 'C:/Users/chou/Desktop/swap/templates/swap/index.html.twig'|file_link(0) }}">templates/swap/index.html.twig</a></code></li>
-          </ul>
-      </div>
+<div class="container main mt-1">
+  <div class="row">
+    <div class="col-8">
+      <blockquote class="blockquote text-left m-5">
+          <p class="mb-0 text-white">This object has already been loved once.</p>
+          <footer class="blockquote-footer text-white">Someone famous in <cite title="Source Title text-white">Source Title</cite></footer>
+      </blockquote>
     </div>
   </div>
 </div>

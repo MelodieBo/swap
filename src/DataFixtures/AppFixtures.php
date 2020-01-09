@@ -2,20 +2,20 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Categorie;
 use App\Entity\Produit;
+use App\Entity\Categorie;
+use App\Repository\CategorieRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager, CategorieRepository $repo)
     {
-
         
         for ($i = 1; $i < 30; $i++) {
-            $cat = array('femme', 'homme', 'enfant', 'maison', 'media_loisir', 'autre');
-            $rand = array_rand($cat, 1);
+
+            $rand = array_rand($repo, 1);
 
             $produit = new Produit;
             $produit->setCategorie($rand)
