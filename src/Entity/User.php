@@ -21,7 +21,6 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @Assert\Unique(message ="L'email n'est pas validé !")
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
@@ -43,8 +42,7 @@ class User implements UserInterface
     private $adresse;
 
     /**
-     * @Assert\Regex(pattern="/^\+33\(0\)[0-9]{10}$/", message="Veuillez entrer un numero tel correct !!!") 
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $telephone;
 
@@ -54,8 +52,13 @@ class User implements UserInterface
     private $ville;
 
     /**
-     * @Assert\Regex(pattern="/^[0-9]{5}$/", message="Code postal n'est pas validé !") 
-     * @ORM\Column(type="integer")
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 5,
+     *      minMessage = "Le code postale doit contenir {{ limit }} chiffres.",
+     *      maxMessage = "Le code postale doit contenir {{ limit }} chiffres."
+     * )
+     * @ORM\Column(type="string")
      */
     private $code_postale;
 
@@ -225,4 +228,7 @@ class User implements UserInterface
 
         return $this;
     }
+
+
+    
 }

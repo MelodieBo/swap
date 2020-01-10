@@ -6,6 +6,10 @@ use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -40,27 +44,37 @@ class SecurityController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $req, UserPasswordEncoderInterface $encoder)
+    public function register(Request $req, User $user = null, UserPasswordEncoderInterface $encoder)
     {
+        $em = $this->getDoctrine()->getManager();
 
-        if ($req->isMethod('POST')) {
+        if (!$user) {
             $user = new User();
-            $user->setEmail($req->request->get('email'));
-            $user->setPassword($encoder->encodePassword($user, $req->request->get('password')));
-            $user->setAdresse($req->request->get('adresse'));
-            $user->setTelephone($req->request->get('telephone'));
-            $user->setVille($req->request->get('ville'));
-            $user->setCodePostale($req->request->get('code_postale'));
-            $user->setRoles(['ROLE_USER']);
+        }
 
-            $em = $this->getDoctrine()->getManager();
+        $form = $this->createFormBuilder($user)
+            ->add('email', EmailType::class)
+            ->add('password', PasswordType::class)
+            ->add('adresse')
+            ->add('telephone', TextType::class)
+            ->add('ville')
+            ->add('code_postale')
+            ->add('modifier', SubmitType::class)
+            ->add('inscription', SubmitType::class)
+            ->getForm();
+
+        $form->handleRequest($req);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
+            $user->setRoles(['ROLE_USER']);
             $em->persist($user);
             $em->flush();
-
-            $this->addFlash('success', 'Votre compte à bien été enregistré.');
             return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('security/register.html.twig');
+        return $this->render('security/register.html.twig', [
+            'monFormulaire' => $form->createView(),
+            'edition' => ($user->getId() !== null) ? true : false
+        ]);
     }
 }
