@@ -53,8 +53,8 @@ class AppFixtures extends Fixture
         
 
         for ($i = 0; $i < 30; $i++) {
-            $categorie = $categories[0];
-            $user = $users[0];
+            $categorie = $categories[(mt_srand(0,5))];
+            $user = $users[(mt_srand(0, 9))];
             $product = new Produit();
             $product->setTitre($faker->realText())
                     ->setDescription($faker->sentence())
