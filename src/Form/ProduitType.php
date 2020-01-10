@@ -21,9 +21,7 @@ class ProduitType extends AbstractType
             ->add('titre', TextType::class)
             ->add('description', TextareaType::class)
             ->add('valeur')
-            ->add('image', FileType::class,[
-                'mapped' => false
-             ] )
+            ->add('image', FileType::class)
             ->add('categorie', EntityType::class, [
                 'class'=>'App\Entity\Categorie',
             ])
@@ -39,3 +37,4 @@ class ProduitType extends AbstractType
         ]);
     }
 }
+

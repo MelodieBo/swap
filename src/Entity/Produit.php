@@ -23,7 +23,7 @@ class Produit
     /**
      * @ORM\Column(type="string", length=255)
      * 
-     */
+     */ 
     private $titre;
 
     /**
@@ -38,12 +38,7 @@ class Produit
 
    
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @var string
-     */
-    private $image;
-
+   
     /**
      * @ORM\Column(type="datetime")
      */
@@ -53,6 +48,11 @@ class Produit
      * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="produit")
      */
     private $categorie;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
 
    
 
@@ -99,17 +99,9 @@ class Produit
 
        
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
+  
+    
+    
 
     public function getCreeLe(): ?\DateTimeInterface
     {
@@ -131,6 +123,18 @@ class Produit
     public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
