@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block stylesheets %}
+
+  <style>
+    body, html {
+      height: 100%;
+    }
+    .main {
+      /* The image used */
+      background-image: url("https://cdn.pixabay.com/photo/2016/05/28/00/06/gift-1420830_1280.jpg");
+
+      /* Half height */
+      height: 50vh;
+
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+  </style>
+
+{% endblock %}
+
+{% block body %}
+
+<!-- Navigation CATEGORIES -->
+
+<ul class="nav nav-tabs mt-2">
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#femmes">Femmes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#hommes">Hommes</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#enfants">Enfants</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#maison">Maison</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#medias">Multimédias/loisirs</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#autre">Autre</a>
+  </li>
+</ul>
+
+<!-- End Navigation CATEGORIES -->
+
+<!-- Wrapper -->
+<div class="container main mt-1">
+  <div class="row">
+    <div class="col-8">
+      <blockquote class="blockquote text-left m-5">
+          <p class="mb-0 text-white">This object has already been loved once.</p>
+          <footer class="blockquote-footer text-white">Someone famous in <cite title="Source Title text-white">Source Title</cite></footer>
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- End Wrapper -->
+
+{% endblock %}

@@ -1,8 +1,11 @@
 {
+    "name": "wf3/swap",
+    "authors": [],
+    "description": "",
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": "^7.1.3",
+        "php": "^7.3.8",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/annotations": "^1.8",
@@ -31,6 +34,7 @@
         "vich/uploader-bundle": "^1.12"
     },
     "require-dev": {
+        "fzaninotto/faker": "^1.9",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.14",
         "symfony/profiler-pack": "*",
