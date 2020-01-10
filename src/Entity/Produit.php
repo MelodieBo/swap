@@ -97,7 +97,7 @@ class Produit
         return $this;
     }
 
-    
+       
 
     public function getImage(): ?string
     {

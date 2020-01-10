@@ -28,6 +28,7 @@ class FormController extends AbstractController
         // to database
 
             $em = $this->getDoctrine()->getManager();
+            $produit->setCreeLe(new \DateTime());
             $em->persist($produit);
             $em->flush();
         }
