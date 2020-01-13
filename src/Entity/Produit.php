@@ -35,17 +35,6 @@ class Produit
      * @ORM\Column(type="integer", nullable=true)
      */
     private $valeur;
-
-<<<<<<< HEAD
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @var string
-     */
-    private $image;
-=======
-   
->>>>>>> 4c92b8865cbc2526e63042ad3fcb5a0fb3798f2c
-
    
     /**
      * @ORM\Column(type="datetime")
@@ -105,22 +94,6 @@ class Produit
         return $this;
     }
 
-<<<<<<< HEAD
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
-=======
-       
->>>>>>> 4c92b8865cbc2526e63042ad3fcb5a0fb3798f2c
-
-  
-    
-    
 
     public function getCreeLe(): ?\DateTimeInterface
     {
