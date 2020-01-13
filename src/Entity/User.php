@@ -36,6 +36,20 @@ class User implements UserInterface
      */
     private $password;
 
+
+
+
+
+    /**
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
+
+
+
+
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -230,5 +244,14 @@ class User implements UserInterface
     }
 
 
+
+
+    function getIsActive() {
+        return $this->isActive;
+    }
+    function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
     
 }

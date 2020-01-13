@@ -59,6 +59,7 @@ class SecurityController extends AbstractController
             ->add('telephone', TextType::class)
             ->add('ville')
             ->add('code_postale')
+            ->add('isActive')
             ->add('modifier', SubmitType::class)
             ->add('inscription', SubmitType::class)
             ->getForm();
@@ -67,13 +68,21 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
             $user->setRoles(['ROLE_USER']);
+            $user->setIsActive(true);
             $em->persist($user);
             $em->flush();
-            return $this->redirectToRoute('app_login');
+            $this->addFlash('success', 'Votre compte à bien été enregistré.');
+            return $this->redirectToRoute('app_login', [
+                'monFormulaire' => $form->createView(), 
+                'mainNavLogin' => true, 
+                'title' => 'Login'
+            ]);
         }
 
         return $this->render('security/register.html.twig', [
-            'monFormulaire' => $form->createView(),
+            'monFormulaire' => $form->createView(), 
+            'mainNavRegistration' => true, 
+            'title' => 'Inscription',
             'edition' => ($user->getId() !== null) ? true : false
         ]);
     }
