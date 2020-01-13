@@ -1,8 +1,11 @@
 <?php
 
-use App\Kernel;
+
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\RouteCollectionBuilder;
+use Symfony\Component\HttpKernel\Kernel as BaseKernel;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 require dirname(__DIR__).'/config/bootstrap.php';
 
