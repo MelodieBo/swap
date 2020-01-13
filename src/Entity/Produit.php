@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -22,7 +23,7 @@ class Produit
     /**
      * @ORM\Column(type="string", length=255)
      * 
-     */
+     */ 
     private $titre;
 
     /**
@@ -35,22 +36,33 @@ class Produit
      */
     private $valeur;
 
+<<<<<<< HEAD
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $image;
+=======
+   
+>>>>>>> 4c92b8865cbc2526e63042ad3fcb5a0fb3798f2c
 
+   
     /**
      * @ORM\Column(type="datetime")
      */
     private $CreeLe;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="produits")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="produit")
      */
     private $categorie;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+   
 
     public function getId(): ?int
     {
@@ -93,6 +105,7 @@ class Produit
         return $this;
     }
 
+<<<<<<< HEAD
     public function getImage(): ?string
     {
         return $this->image;
@@ -101,9 +114,13 @@ class Produit
     public function setImage(?string $image): self
     {
         $this->image = $image;
+=======
+       
+>>>>>>> 4c92b8865cbc2526e63042ad3fcb5a0fb3798f2c
 
-        return $this;
-    }
+  
+    
+    
 
     public function getCreeLe(): ?\DateTimeInterface
     {
@@ -128,4 +145,18 @@ class Produit
 
         return $this;
     }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    
 }

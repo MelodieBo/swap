@@ -2,10 +2,17 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\User;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends AbstractController
 {
@@ -31,6 +38,43 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
-        throw new \Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
+        return $this->redirectToRoute('home');
+    }
+
+    /**
+     * @Route("/register", name="app_register")
+     */
+    public function register(Request $req, User $user = null, UserPasswordEncoderInterface $encoder)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        if (!$user) {
+            $user = new User();
+        }
+
+        $form = $this->createFormBuilder($user)
+            ->add('email', EmailType::class)
+            ->add('password', PasswordType::class)
+            ->add('adresse')
+            ->add('telephone', TextType::class)
+            ->add('ville')
+            ->add('code_postale')
+            ->add('modifier', SubmitType::class)
+            ->add('inscription', SubmitType::class)
+            ->getForm();
+
+        $form->handleRequest($req);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
+            $user->setRoles(['ROLE_USER']);
+            $em->persist($user);
+            $em->flush();
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('security/register.html.twig', [
+            'monFormulaire' => $form->createView(),
+            'edition' => ($user->getId() !== null) ? true : false
+        ]);
     }
 }

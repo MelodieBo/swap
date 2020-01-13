@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200108114453 extends AbstractMigration
+final class Version20200110092507 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,9 @@ final class Version20200108114453 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE categorie ADD libelle VARCHAR(255) NOT NULL, DROP femme, DROP homme, DROP enfant, DROP maison, DROP media_loisir, DROP autre');
+        $this->addSql('ALTER TABLE produit DROP FOREIGN KEY FK_29A5EC27A76ED395');
+        $this->addSql('DROP INDEX IDX_29A5EC27A76ED395 ON produit');
+        $this->addSql('ALTER TABLE produit DROP user_id');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +32,8 @@ final class Version20200108114453 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE categorie ADD femme VARCHAR(255) DEFAULT NULL COLLATE utf8mb4_unicode_ci, ADD homme VARCHAR(255) DEFAULT NULL COLLATE utf8mb4_unicode_ci, ADD enfant VARCHAR(255) DEFAULT NULL COLLATE utf8mb4_unicode_ci, ADD maison VARCHAR(255) DEFAULT NULL COLLATE utf8mb4_unicode_ci, ADD media_loisir VARCHAR(255) DEFAULT NULL COLLATE utf8mb4_unicode_ci, ADD autre VARCHAR(255) DEFAULT NULL COLLATE utf8mb4_unicode_ci, DROP libelle');
+        $this->addSql('ALTER TABLE produit ADD user_id INT NOT NULL');
+        $this->addSql('ALTER TABLE produit ADD CONSTRAINT FK_29A5EC27A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('CREATE INDEX IDX_29A5EC27A76ED395 ON produit (user_id)');
     }
 }

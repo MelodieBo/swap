@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -41,7 +42,7 @@ class User implements UserInterface
     private $adresse;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $telephone;
 
@@ -51,7 +52,13 @@ class User implements UserInterface
     private $ville;
 
     /**
-     * @ORM\Column(type="integer")
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 5,
+     *      minMessage = "Le code postale doit contenir {{ limit }} chiffres.",
+     *      maxMessage = "Le code postale doit contenir {{ limit }} chiffres."
+     * )
+     * @ORM\Column(type="string")
      */
     private $code_postale;
 
@@ -221,4 +228,7 @@ class User implements UserInterface
 
         return $this;
     }
+
+
+    
 }

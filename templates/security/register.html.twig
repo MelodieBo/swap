@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<h1>Inscription</h1>
+
+{{ form_start(monFormulaire) }}
+
+{{ form_row(monFormulaire.email) }}
+
+{{ form_row(monFormulaire.password) }}
+
+{{ form_row(monFormulaire.adresse) }}
+
+{{ form_row(monFormulaire.telephone) }}
+
+{{ form_row(monFormulaire.ville) }}
+
+{{ form_row(monFormulaire.code_postale) }}
+
+{% if edition %}
+
+{{ form_row(monFormulaire.modifier, { 'label': 'Modifier' }) }}
+
+{% else %}
+
+{{ form_row(monFormulaire.inscription, { 'label': 'Inscription' }) }}
+
+{% endif %}
+
+{{ form_end(monFormulaire) }}
+
+{% endblock %}
