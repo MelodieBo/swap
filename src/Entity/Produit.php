@@ -36,12 +36,6 @@ class Produit
     private $valeur;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="produit")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
@@ -95,18 +89,6 @@ class Produit
     public function setValeur(?int $valeur): self
     {
         $this->valeur = $valeur;
-
-        return $this;
-    }
-
-    public function getUser(): ?user
-    {
-        return $this->user;
-    }
-
-    public function setUser(?user $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }

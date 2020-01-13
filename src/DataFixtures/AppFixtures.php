@@ -22,15 +22,14 @@ class AppFixtures extends Fixture
     {
         $users = [];
         // fixtures pour users
-        $faker = \Faker\Factory::create('fr_FR');
         for ($i=0; $i < 10; $i++) { 
             $user = new User();
-            $user->setEmail($faker->email())
-                 ->setPassword($faker->password($this->encoder->encodePassword($user,'toto')))
-                 ->setAdresse($faker->address)
-                 ->setTelephone($faker->phoneNumber)
-                 ->setVille($faker->country)
-                 ->setCodePostale($faker->postcode);
+            $user->setEmail('name'. $i . '@gmail.com')
+                 ->setPassword($this->encoder->encodePassword($user,'toto'))
+                 ->setAdresse('46, rue Pierre Motte')
+                 ->setTelephone('0186224435')
+                 ->setVille('SAINT-DENIS')
+                 ->setCodePostale('97400');
             $manager->persist($user);
             
             $users[] = $user;
@@ -53,16 +52,12 @@ class AppFixtures extends Fixture
         
 
         for ($i = 0; $i < 30; $i++) {
-            $categorie = $categories[0];
-            $user = $users[0];
             $product = new Produit();
-            $product->setTitre($faker->realText())
-                    ->setDescription($faker->sentence())
+            $product->setTitre("Titre du produit n° $i")
+                    ->setDescription("Inter quos Paulus eminebat notarius ortus in Hispania, glabro quidam sub vultu latens, odorandi vias periculorum occultas perquam sagax.")
                     ->setValeur(13)
-                    ->setUser($user)
                     ->setImage('https://cdn.pixabay.com/photo/2014/05/03/00/50/video-controller-336657_1280.jpg')
-                    ->setCreeLe(new \DATETIME())
-                    ->setCategorie($categorie);
+                    ->setCreeLe(new \DATETIME());
                     
             $manager->persist($product);
         }
