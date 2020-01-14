@@ -67,11 +67,6 @@ class User implements UserInterface
      */
     private $code_postale;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Produit", mappedBy="user", orphanRemoval=true)
-     */
-    private $produit;
-
     public function __construct()
     {
         $this->produit = new ArrayCollection();
@@ -199,37 +194,6 @@ class User implements UserInterface
     public function setCodePostale(int $code_postale): self
     {
         $this->code_postale = $code_postale;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Produit[]
-     */
-    public function getProduit(): Collection
-    {
-        return $this->produit;
-    }
-
-    public function addProduit(Produit $produit): self
-    {
-        if (!$this->produit->contains($produit)) {
-            $this->produit[] = $produit;
-            $produit->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduit(Produit $produit): self
-    {
-        if ($this->produit->contains($produit)) {
-            $this->produit->removeElement($produit);
-            // set the owning side to null (unless already changed)
-            if ($produit->getUser() === $this) {
-                $produit->setUser(null);
-            }
-        }
 
         return $this;
     }
