@@ -202,36 +202,5 @@ class User implements UserInterface
 
         return $this;
     }
-
-    /**
-     * @return Collection|Produit[]
-     */
-    public function getProduit(): Collection
-    {
-        return $this->produit;
-    }
-
-    public function addProduit(Produit $produit): self
-    {
-        if (!$this->produit->contains($produit)) {
-            $this->produit[] = $produit;
-            $produit->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduit(Produit $produit): self
-    {
-        if ($this->produit->contains($produit)) {
-            $this->produit->removeElement($produit);
-            // set the owning side to null (unless already changed)
-            if ($produit->getUser() === $this) {
-                $produit->setUser(null);
-            }
-        }
-
-        return $this;
-    }
     
 }
