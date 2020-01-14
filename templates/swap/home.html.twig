@@ -7,19 +7,35 @@
     body, html {
       height: 100%;
     }
-    .main {
-      /* The image used */
-      background-image: url("https://cdn.pixabay.com/photo/2016/05/28/00/06/gift-1420830_1280.jpg");
 
+    .carousel-item {
       /* Half height */
-      height: 50vh;
-
-      /* Center and scale the image nicely */
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
+      height: 70vh;
     }
 
+    .carousel-item .texte {
+      position:absolute;
+      color:white;
+      font-size:1.5em;
+      width:25%;      /* même largeur que l’image */
+    }
+
+    .carousel-item .texte1 {
+      top: 2rem;
+      left: 3rem;
+    }
+
+    .carousel-item .texte2 {
+      top: 2rem;
+      right: 3rem;
+      text-align: right;
+      width:35%;
+    }
+    .carousel-item .texte3 {
+      top: 2rem;
+      right: 3rem;
+      text-align: right;
+    }
   </style>
 
 {% endblock %}
@@ -51,8 +67,26 @@
 
 <!-- End Navigation CATEGORIES -->
 
-<!-- Wrapper -->
-<div class="container main mt-1">
+<!-- Carousel -->
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+        <div class="texte texte1">" - This object has already been loved once. "</div>
+        <img src="https://cdn.pixabay.com/photo/2016/05/28/00/06/gift-1420830_1280.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <div class="texte texte2">" This object has already been loved once. "</div>
+      <img src="https://cdn.pixabay.com/photo/2019/12/03/07/34/gift-4669449_1280.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <div class="texte texte3">" This object has already been loved once. "</div>
+      <img src="https://cdn.pixabay.com/photo/2017/12/05/05/34/gifts-2998593_1280.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
+
+{# <div class="container main mt-1">
   <div class="row">
     <div class="col-8">
       <blockquote class="blockquote text-left m-5">
@@ -61,8 +95,8 @@
       </blockquote>
     </div>
   </div>
-</div>
+</div> #}
 
-<!-- End Wrapper -->
+<!-- End Carousel -->
 
 {% endblock %}

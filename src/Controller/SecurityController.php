@@ -59,7 +59,6 @@ class SecurityController extends AbstractController
             ->add('telephone', TextType::class)
             ->add('ville')
             ->add('code_postale')
-            ->add('modifier', SubmitType::class)
             ->add('inscription', SubmitType::class)
             ->getForm();
 

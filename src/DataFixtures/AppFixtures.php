@@ -57,7 +57,8 @@ class AppFixtures extends Fixture
                     ->setDescription("Inter quos Paulus eminebat notarius ortus in Hispania, glabro quidam sub vultu latens, odorandi vias periculorum occultas perquam sagax.")
                     ->setValeur(13)
                     ->setImage('https://cdn.pixabay.com/photo/2014/05/03/00/50/video-controller-336657_1280.jpg')
-                    ->setCreeLe(new \DATETIME());
+                    ->setCreeLe(new \DATETIME())
+                    ->setCategorie($categories[rand(0, count($categories)-1)]);
                     
             $manager->persist($product);
         }
