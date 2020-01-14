@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Produit;
 use App\Entity\Categorie;
+use App\Repository\ProduitRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Choice;
@@ -15,32 +17,34 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class SwapController extends AbstractController
+
 {
-    /**
-* @Route("/", name="home")
+//     /**
+// * @Route("/", name="home")
+//      */
+//     public function home(ProduitRepository $produitRepository): Response
+//     {
+//         $entityManager = $this->getDoctrine()->getManager();
+//         $produits = $entityManager->getRepository(Produit::class)->findBy([], ['CreeLe'=> 'DESC'], 10); // filtrer par colonne, mettre dans l'ordre et limiter à 10.
+
+
+//         return $this->render('swap/home.html.twig', [
+//             'produit' => $produits,
+//         ]);
+//     }
+
+
+
+/**
+     * @Route("/", name="home", methods={"GET"})
      */
-    public function index()
+
+    public function home(ProduitRepository $produitRepository): Response
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $produits = $entityManager->getRepository(Produit::class)->findBy([], ['CreeLe'=> 'DESC'], 10); // filtrer par colonne, mettre dans l'ordre et limiter à 10.
-
-
-        return $this->render('swap/home.html.twig', [
-            'produit' => $produits,
-        ]);
-    }
-
-    /**
-     * @Route("/", name="home")
-     */
-
-    public function home()
-    {
-
         return $this->render('swap/home.html.twig', [
             'title' => "App SwapGift",
+            'produits' => $produitRepository->findBy([], ['CreeLe'=> 'DESC'], 12),
         ]);
-        
     }
 
     /**
