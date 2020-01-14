@@ -19,8 +19,12 @@ class SwapController extends AbstractController
      */
     public function index()
     {
+        $entityManager = $this->getDoctrine()->getManager();
+        $produits = $entityManager->getRepository(Produit::class)->findBy([], ['CreeLe'=> 'DESC'], 10); // filtrer par colonne, mettre dans l'ordre et limiter à 10.
+
+
         return $this->render('swap/index.html.twig', [
-            'controller_name' => 'SwapController',
+            'produits' => $produits,
         ]);
     }
 
@@ -49,7 +53,7 @@ class SwapController extends AbstractController
                         new Categorie('Maison'),
                         new Categorie('Media/Loisir'),
                         new Categorie('Autre'),
-                    ],
+                    ]
                      )
                      ->add('valeur')
                      ->add('image', FileType::class)
