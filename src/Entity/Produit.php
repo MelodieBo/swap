@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -22,7 +23,7 @@ class Produit
     /**
      * @ORM\Column(type="string", length=255)
      * 
-     */
+     */ 
     private $titre;
 
     /**
@@ -34,29 +35,23 @@ class Produit
      * @ORM\Column(type="integer", nullable=true)
      */
     private $valeur;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="produit")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @var string
-     */
-    private $image;
-
+   
     /**
      * @ORM\Column(type="datetime")
      */
     private $CreeLe;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="produits")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="produit")
      */
     private $categorie;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+   
 
     public function getId(): ?int
     {
@@ -99,29 +94,6 @@ class Produit
         return $this;
     }
 
-    public function getUser(): ?user
-    {
-        return $this->user;
-    }
-
-    public function setUser(?user $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
 
     public function getCreeLe(): ?\DateTimeInterface
     {
@@ -146,4 +118,18 @@ class Produit
 
         return $this;
     }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    
 }

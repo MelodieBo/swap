@@ -19,18 +19,18 @@ class Categorie
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $libelle;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Produit", mappedBy="categorie")
      */
-    private $produits;
+    private $produit;
 
     public function __construct()
     {
-        $this->produits = new ArrayCollection();
+        $this->produit = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -43,7 +43,7 @@ class Categorie
         return $this->libelle;
     }
 
-    public function setLibelle(string $libelle): self
+    public function setLibelle(?string $libelle): self
     {
         $this->libelle = $libelle;
 
@@ -53,15 +53,15 @@ class Categorie
     /**
      * @return Collection|Produit[]
      */
-    public function getProduits(): Collection
+    public function getProduit(): Collection
     {
-        return $this->produits;
+        return $this->produit;
     }
 
     public function addProduit(Produit $produit): self
     {
-        if (!$this->produits->contains($produit)) {
-            $this->produits[] = $produit;
+        if (!$this->produit->contains($produit)) {
+            $this->produit[] = $produit;
             $produit->setCategorie($this);
         }
 
@@ -70,8 +70,8 @@ class Categorie
 
     public function removeProduit(Produit $produit): self
     {
-        if ($this->produits->contains($produit)) {
-            $this->produits->removeElement($produit);
+        if ($this->produit->contains($produit)) {
+            $this->produit->removeElement($produit);
             // set the owning side to null (unless already changed)
             if ($produit->getCategorie() === $this) {
                 $produit->setCategorie(null);
@@ -79,5 +79,10 @@ class Categorie
         }
 
         return $this;
+    }
+
+    public function __toString(){
+
+        return $this->libelle;
     }
 }

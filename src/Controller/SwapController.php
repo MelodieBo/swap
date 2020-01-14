@@ -6,6 +6,8 @@ use App\Entity\Produit;
 use App\Entity\Categorie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -15,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SwapController extends AbstractController
 {
     /**
-     * @Route("/swap", name="swap")
+* @Route("/", name="home")
      */
     public function index()
     {
@@ -23,9 +25,22 @@ class SwapController extends AbstractController
         $produits = $entityManager->getRepository(Produit::class)->findBy([], ['CreeLe'=> 'DESC'], 10); // filtrer par colonne, mettre dans l'ordre et limiter à 10.
 
 
-        return $this->render('swap/index.html.twig', [
-            'produits' => $produits,
+        return $this->render('swap/home.html.twig', [
+            'produit' => $produits,
         ]);
+    }
+
+    /**
+     * @Route("/", name="home")
+     */
+
+    public function home()
+    {
+
+        return $this->render('swap/home.html.twig', [
+            'title' => "App SwapGift",
+        ]);
+        
     }
 
     /**
@@ -53,8 +68,7 @@ class SwapController extends AbstractController
                         new Categorie('Maison'),
                         new Categorie('Media/Loisir'),
                         new Categorie('Autre'),
-                    ]
-                     )
+                    ])
                      ->add('valeur')
                      ->add('image', FileType::class)
                      ->add('ajouter', SubmitType::class)

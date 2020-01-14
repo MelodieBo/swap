@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -41,7 +42,12 @@ class User implements UserInterface
     private $adresse;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
+     * @Assert\Regex("/^[0-9]{10}/")
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 10,
+     *)
      */
     private $telephone;
 
@@ -51,14 +57,15 @@ class User implements UserInterface
     private $ville;
 
     /**
-     * @ORM\Column(type="integer")
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 5,
+     *      minMessage = "Le code postale doit contenir {{ limit }} chiffres.",
+     *      maxMessage = "Le code postale doit contenir {{ limit }} chiffres."
+     * )
+     * @ORM\Column(type="string")
      */
     private $code_postale;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Produit", mappedBy="user", orphanRemoval=true)
-     */
-    private $produit;
 
     public function __construct()
     {
@@ -190,35 +197,5 @@ class User implements UserInterface
 
         return $this;
     }
-
-    /**
-     * @return Collection|Produit[]
-     */
-    public function getProduit(): Collection
-    {
-        return $this->produit;
-    }
-
-    public function addProduit(Produit $produit): self
-    {
-        if (!$this->produit->contains($produit)) {
-            $this->produit[] = $produit;
-            $produit->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduit(Produit $produit): self
-    {
-        if ($this->produit->contains($produit)) {
-            $this->produit->removeElement($produit);
-            // set the owning side to null (unless already changed)
-            if ($produit->getUser() === $this) {
-                $produit->setUser(null);
-            }
-        }
-
-        return $this;
-    }
+    
 }
