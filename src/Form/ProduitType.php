@@ -25,9 +25,7 @@ class ProduitType extends AbstractType
             ->add('categorie', EntityType::class, [
                 'class'=>'App\Entity\Categorie',
             ])
-            ->add('publier', SubmitType::class)
-           
-        ;
+            ->add('publier', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -3,24 +3,67 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-<h1>Inscription</h1>
 
-{{ form_start(monFormulaire) }}
 
-{{ form_row(monFormulaire.email) }}
+<div class="row mt-5 justify-content-center">
+    <div class="col-6">
+   
+        {{ form_start(monFormulaire) }}
 
-{{ form_row(monFormulaire.password) }}
+            <h1>Inscription</h1>
 
-{{ form_row(monFormulaire.adresse) }}
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <label for="">Email</label>
+                    {{ form_widget(monFormulaire.email, { 'attr': {'class': 'form-control', 'placeholder': 'Email'} }) }}
+                    <small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais votre email</small>
+                </div>
+            </div>
 
-{{ form_row(monFormulaire.telephone) }}
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <label for="">Mot de passe</label>
+                    {{ form_widget(monFormulaire.password, { 'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'} }) }}
+                </div>
+            </div>
 
-{{ form_row(monFormulaire.ville) }}
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <label for="">Adresse</label>
+                    {{ form_widget(monFormulaire.adresse, { 'attr': {'class': 'form-control', 'placeholder': 'adresse'} }) }}
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <label for="">Téléphone</label>
+                    {{ form_widget(monFormulaire.telephone, { 'attr': {'class': 'form-control', 'placeholder': 'téléphone'} }) }}
+                </div>
+            </div>
 
-{{ form_row(monFormulaire.code_postale) }}
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <label for="">Ville</label>
+                    {{ form_widget(monFormulaire.ville, { 'attr': {'class': 'form-control', 'placeholder': 'ville'} }) }}
+                </div>
+            </div>
 
-{{ form_row(monFormulaire.inscription, { 'label': 'Inscription' }) }}
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <label for="">Code Postal</label>
+                    {{ form_widget(monFormulaire.code_postale, { 'attr': {'class': 'form-control', 'placeholder': 'code postal'} }) }}
+                </div>
+            </div>
 
-{{ form_end(monFormulaire) }}
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    {{ form_widget(monFormulaire.inscription, { 'attr': {'class': 'btn btn-secondary', 'label': 'Inscription'} }) }}
+                </div>
+            </div>
+
+        {{ form_end(monFormulaire) }}
+        
+    </div>
+</div>
 
 {% endblock %}

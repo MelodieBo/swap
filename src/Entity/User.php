@@ -67,11 +67,6 @@ class User implements UserInterface
      */
     private $code_postale;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Produit", mappedBy="user", orphanRemoval=true)
-     */
-    private $produit;
-
     public function __construct()
     {
         $this->produit = new ArrayCollection();

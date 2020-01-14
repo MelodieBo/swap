@@ -35,9 +35,6 @@ class Produit
      * @ORM\Column(type="integer", nullable=true)
      */
     private $valeur;
-
-   
-
    
     /**
      * @ORM\Column(type="datetime")
@@ -97,11 +94,6 @@ class Produit
         return $this;
     }
 
-       
-
-  
-    
-    
 
     public function getCreeLe(): ?\DateTimeInterface
     {
