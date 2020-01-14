@@ -36,20 +36,6 @@ class User implements UserInterface
      */
     private $password;
 
-
-
-
-
-    /**
-     * @ORM\Column(name="is_active", type="boolean")
-     */
-    private $isActive;
-
-
-
-
-
-
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -57,6 +43,11 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\Regex("/^[0-9]{10}/")
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 10,
+     *)
      */
     private $telephone;
 
@@ -241,17 +232,6 @@ class User implements UserInterface
         }
 
         return $this;
-    }
-
-
-
-
-    function getIsActive() {
-        return $this->isActive;
-    }
-    function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
     }
     
 }

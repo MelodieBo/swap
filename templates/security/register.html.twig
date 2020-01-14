@@ -19,15 +19,7 @@
 
 {{ form_row(monFormulaire.code_postale) }}
 
-{% if edition %}
-
-{{ form_row(monFormulaire.modifier, { 'label': 'Modifier' }) }}
-
-{% else %}
-
 {{ form_row(monFormulaire.inscription, { 'label': 'Inscription' }) }}
-
-{% endif %}
 
 {{ form_end(monFormulaire) }}
 

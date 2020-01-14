@@ -94,11 +94,7 @@ class LoginFromAuthenticator extends AbstractFormLoginAuthenticator implements P
             return new RedirectResponse($targetPath);
         }
 
-        if ($roles[] = 'ROLE_ADMIN'){
-            return new RedirectResponse($this->urlGenerator->generate('admin'));
-        }
-        
-        // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
+      // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
         return new RedirectResponse($this->urlGenerator->generate('user'));
     }
 

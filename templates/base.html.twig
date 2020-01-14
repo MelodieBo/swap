@@ -35,11 +35,11 @@
                         <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
                     </li>
                     {% else %}
-                    <li class="nav-item {% if mainNavLogin is defined %}active{% endif %}">
-                        <a class="nav-link" href="{{ path('app_login') }}">Login</a>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('app_login') }}">Login</a>
                     </li>
-                    <li class="nav-item {% if mainNavRegistration is defined %}active{% endif %}">
-                        <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('app_register') }}">Inscription</a>
                     </li>
                     {% endif %}
                 </ul>
