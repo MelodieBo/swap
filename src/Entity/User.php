@@ -43,6 +43,11 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\Regex("/^[0-9]{10}/")
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 10,
+     *)
      */
     private $telephone;
 
@@ -228,7 +233,5 @@ class User implements UserInterface
 
         return $this;
     }
-
-
     
 }
