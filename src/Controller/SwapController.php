@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Produit;
 use App\Entity\Categorie;
+use App\Repository\ProduitRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Choice;
@@ -29,17 +31,17 @@ class SwapController extends AbstractController
         ]);
     }
 
+
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="home", methods={"GET"})
      */
 
-    public function home()
+    public function home(ProduitRepository $produitRepository): Response
     {
-
         return $this->render('swap/home.html.twig', [
             'title' => "App SwapGift",
+            'produits' => $produitRepository->findBy([], ['CreeLe'=> 'DESC'], 12),
         ]);
-        
     }
 
     /**

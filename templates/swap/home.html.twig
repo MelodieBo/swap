@@ -86,6 +86,34 @@
   </div>
 </div>
 
+<div class="container">
+  <div class="row justify-content-center">
+
+      {% for produit in produits %}
+
+          <div class="col-3 card m-3">
+            <h3 class="card-header">{{ produit.titre }}</h3>
+            <div class="card-body">
+              <h6 class="card-subtitle text-muted">Catégorie : {{ produit.categorie }}</h6>
+            </div>
+            <img style="height: 200px; width: 100%; display: block;" src="{{ produit.image }}" alt="Card image">
+            <div class="card-body">
+              <p class="card-text">{{ produit.description }}</p>
+            </div>
+
+            <div class="card-body">
+              Valeur estimée : {{ produit.valeur }} €
+            </div>
+            <div class="card-footer text-muted">
+             Ajouté le {{ produit.CreeLe ? produit.CreeLe|date('Y-m-d') : '' }}
+            </div>
+          </div>
+
+      {% endfor %}
+
+  </div>
+</div>
+
 {# <div class="container main mt-1">
   <div class="row">
     <div class="col-8">

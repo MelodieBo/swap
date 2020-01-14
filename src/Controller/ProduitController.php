@@ -25,6 +25,7 @@ class ProduitController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/new", name="produit_new", methods={"GET","POST"})
      */
