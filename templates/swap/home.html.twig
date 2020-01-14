@@ -10,14 +10,18 @@
 
     .carousel-item {
       /* Half height */
-      height: 70vh;
+      height: 60vh;
+    }
+
+    .radius {
+      border-radius: 30px;
     }
 
     .carousel-item .texte {
       position:absolute;
       color:white;
       font-size:1.5em;
-      width:25%;      /* même largeur que l’image */
+      width:25%;
     }
 
     .carousel-item .texte1 {
@@ -27,9 +31,9 @@
 
     .carousel-item .texte2 {
       top: 2rem;
-      right: 3rem;
-      text-align: right;
-      width:35%;
+      left: 18rem;
+      text-align: center;
+      width:45%;
     }
     .carousel-item .texte3 {
       top: 2rem;
@@ -69,8 +73,8 @@
 
 <!-- Carousel -->
 
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
+<div id="carouselExampleSlidesOnly" class="carousel slide mt-3" data-ride="carousel">
+  <div class="carousel-inner radius">
     <div class="carousel-item active">
         <div class="texte texte1">" - This object has already been loved once. "</div>
         <img src="https://cdn.pixabay.com/photo/2016/05/28/00/06/gift-1420830_1280.jpg" class="d-block w-100" alt="...">
@@ -87,26 +91,28 @@
 </div>
 
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row">
 
       {% for produit in produits %}
 
-          <div class="col-3 card m-3">
-            <h3 class="card-header">{{ produit.titre }}</h3>
-            <div class="card-body">
-              <h6 class="card-subtitle text-muted">Catégorie : {{ produit.categorie }}</h6>
-            </div>
-            <img style="height: 200px; width: 100%; display: block;" src="{{ produit.image }}" alt="Card image">
-            <div class="card-body">
-              <p class="card-text">{{ produit.description }}</p>
-            </div>
+          <div class="col-4 card mt-3">
+          
+              <h5 class="card-header">{{ produit.titre }}</h5>
+              <div class="card-body">
+                <h6 class="card-subtitle text-muted">Catégorie : {{ produit.categorie }}</h6>
+              </div>
+              <img style="height: 150px; width: 100%; display: block;" src="{{ produit.image }}" alt="Card image">
+              <div class="card-body">
+                <p class="card-text">{{ produit.description }}</p>
+              </div>
 
-            <div class="card-body">
-              Valeur estimée : {{ produit.valeur }} €
-            </div>
-            <div class="card-footer text-muted">
-             Ajouté le {{ produit.CreeLe ? produit.CreeLe|date('Y-m-d') : '' }}
-            </div>
+              <div class="card-body">
+                Valeur estimée : {{ produit.valeur }} €
+              </div>
+              <div class="card-footer text-muted">
+              Ajouté le {{ produit.CreeLe ? produit.CreeLe|date('Y-m-d') : '' }}
+              </div>
+
           </div>
 
       {% endfor %}
