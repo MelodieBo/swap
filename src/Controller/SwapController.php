@@ -45,6 +45,7 @@ class SwapController extends AbstractController
      @Route("/swap/fiche_produit/{id}", name="fiche_produit")
      */
         public function ficheProduit(Produit $produits) {
+            dump($produits);
             return $this->render('swap/fiche_produit.html.twig', [
                 'title'    => "App SwapGift",
                 'produit'  => $produits,
