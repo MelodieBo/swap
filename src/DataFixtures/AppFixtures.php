@@ -2,13 +2,14 @@
 
 namespace App\DataFixtures;
 
+use Faker\Factory;
 use App\Entity\User;
 use App\Entity\Produit;
 use App\Entity\Categorie;
 use App\DataFixtures\AppFixtures;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class AppFixtures extends Fixture
 
@@ -52,13 +53,17 @@ class AppFixtures extends Fixture
         }
         $manager->flush();
         
+        $faker = Factory::create('FR-fr');
+
+        
 
         for ($i = 0; $i < 30; $i++) {
+            $images = ['e62e8b1f2704b4ae23d8b24f39249fb6.jpeg', '3af483868dcb13edae6eb994682141fb.jpeg', '	08c41832968b8c134733ebeac8728260.jpeg'];
             $product = new Produit();
             $product->setTitre("Titre du produit n° $i")
                     ->setDescription("Inter quos Paulus eminebat notarius ortus in Hispania, glabro quidam sub vultu latens, odorandi vias periculorum occultas perquam sagax.")
-                    ->setValeur(13)
-                    ->setImage('https://cdn.pixabay.com/photo/2014/05/03/00/50/video-controller-336657_1280.jpg')
+                    ->setValeur($faker->randomDigitNotNull)
+                    ->setImage($images[rand(0, count($images)-1)])
                     ->setCreeLe(new \DATETIME())
                     ->setCategorie($categories[rand(0, count($categories)-1)]);
                     
@@ -66,5 +71,5 @@ class AppFixtures extends Fixture
         }
 
         $manager->flush();
-    }
+    } 
 }

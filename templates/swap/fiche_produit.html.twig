@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block stylesheets %}
+
+  <style>
+
+    .radius {
+      border-radius: 30px;
+    }
+    
+    a {
+      text-decoration: none;
+    }
+
+    span {
+      color: #30336b;
+    }
+    .img {
+        width: 95%; 
+        display: block;
+        margin: 0 auto;
+    }
+
+  </style>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6 m-5">
+        
+            <div class="card mb-3">
+                <h3 class="card-header">{{ produit.titre }}</h3>
+                <div class="card-body">
+                    <span class="badge badge-pill badge-info">Catégorie : {{ produit.categorie }}</span>
+                </div>
+                <img class="img radius" src="uploads/{{ produit.image }}" alt="Card image">
+                <div class="card-body">
+                    <h6>Valeur estimée : {{ produit.valeur }} €</h6>
+                    <p class="card-text">{{ produit.description }}</p>
+                </div>
+                <div class="card-body row">
+                <div class="col-6">
+                    <button type="button" class="btn btn-success">Contacter le vendeur</button>
+                </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <h6 class="card-subtitle text-muted">Mis en ligne le {{ produit.CreeLe ? produit.CreeLe|date('d-m-Y')}}</h6>
+                </div>
+            </div>        
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

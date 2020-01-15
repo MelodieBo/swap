@@ -2,8 +2,36 @@
 
 {% block title %}USER{% endblock %}
 
+{% block stylesheets %}
+<style>
+    div.affiche{
+        display: flex;
+        flex-direction: column;
+    }
+    span{
+        color: #308f46;
+        font-size: 1.2em;
+    }
+</style>
+{% endblock %}
+
 {% block body %}
 
-<h1 class="alert alert-dismissible alert-success">Bonjour {{ app.user.username }}</h1>
+<div class="container">
+    <div class="row mt-2 justify-content-center">
+        <div class="col-6"><div class="alert alert-dismissible alert-success">Bonjour {{ app.user.username }}</div></div>
+    </div>
+
+    <div class="row mt-2 justify-content-left affiche">
+        <div><span>Email :</span> {{ app.user.username }}</div>
+        <div><span>Adresse :</span> {{ app.user.adresse }}</div>
+        <div><span>Telephone :</span> {{ app.user.telephone }}</div>
+        <div><span>Ville :</span> {{ app.user.ville }}</div>
+        <div><span>Code Postale :</span> {{ app.user.CodePostale }}</div>
+    </div>
+
+</div>
+
+
 
 {% endblock %}

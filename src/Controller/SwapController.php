@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Produit;
 use App\Entity\Categorie;
+use App\Repository\UserRepository;
 use App\Repository\ProduitRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,8 +43,19 @@ class SwapController extends AbstractController
         return $this->render('swap/home.html.twig', [
             'title' => "App SwapGift",
             'produits' => $produitRepository->findBy([], ['CreeLe'=> 'DESC'], 12),
+            // 'image' => $uploads_directory,
         ]);
     }
+
+    /**
+     @Route("/swap/fiche_produit/{id}", name="fiche_produit")
+     */
+        public function ficheProduit(Produit $produits) {
+            return $this->render('swap/fiche_produit.html.twig', [
+                'title'    => "App SwapGift",
+                'produit'  => $produits,
+            ]);
+        }
 
     /**
      * @Route("/swap/creer", name="creer")
@@ -56,7 +69,6 @@ class SwapController extends AbstractController
         }
         $repo = $this->getDoctrine()->getRepository(Categorie::class);
         $categories = $repo->findAll();
-
        
         
         $form = $this->createFormBuilder($produit)
