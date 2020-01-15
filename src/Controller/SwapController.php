@@ -7,6 +7,7 @@ use App\Entity\Produit;
 use App\Entity\Categorie;
 use App\Repository\UserRepository;
 use App\Repository\ProduitRepository;
+use App\Repository\CategorieRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,31 +20,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class SwapController extends AbstractController
+
 {
-    /**
-     * @Route("/", name="home")
-     */
-    public function index()
-    {
-        $repo = $this->getDoctrine()->getRepository(Categorie::class);
-        $categories  = $repo->findAll();
 
-        return $this->render('swap/index.html.twig', [
-            'categories' => $categories,
-        ]);
-    }
-
-
-    /**
-     * @Route("/", name="home", methods={"GET"})
+/**
+     * @Route("/{categorie}", name="home", methods={"GET"})
      */
 
-    public function home(ProduitRepository $produitRepository): Response
+    public function home(ProduitRepository $produitRepository, CategorieRepository $categorieRepository, $categorie=null): Response
     {
+        $hasCategorie = [];
+        if (isset($categorie)) {
+            $hasCategorie["categorie"] = $categorie;
+        }
         return $this->render('swap/home.html.twig', [
             'title' => "App SwapGift",
-            'produits' => $produitRepository->findBy([], ['CreeLe'=> 'DESC'], 12),
-            // 'image' => $uploads_directory,
+            'categorieActive' => $categorie,
+            'categories' => $categorieRepository->findAll(),
+            'produits' => $produitRepository->findBy($hasCategorie, ['CreeLe'=> 'DESC'], 12),
         ]);
     }
 
