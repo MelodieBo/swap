@@ -10,14 +10,18 @@
 
     .carousel-item {
       /* Half height */
-      height: 70vh;
+      height: 60vh;
+    }
+
+    .radius {
+      border-radius: 30px;
     }
 
     .carousel-item .texte {
       position:absolute;
       color:white;
       font-size:1.5em;
-      width:25%;      /* même largeur que l’image */
+      width:25%;
     }
 
     .carousel-item .texte1 {
@@ -27,9 +31,9 @@
 
     .carousel-item .texte2 {
       top: 2rem;
-      right: 3rem;
-      text-align: right;
-      width:35%;
+      left: 18rem;
+      text-align: center;
+      width:45%;
     }
     .carousel-item .texte3 {
       top: 2rem;
@@ -45,32 +49,19 @@
 <!-- Navigation CATEGORIES -->
 
 <ul class="nav nav-tabs mt-2">
+  {% for categorie in categories %}
   <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#femmes">Femmes</a>
+    <a class="nav-link{% if categorieActive == categorie.id %} active{% endif %}" href="{{ path("home", {categorie: categorie.id }) }}">{{ categorie.libelle }}</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#hommes">Hommes</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#enfants">Enfants</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#maison">Maison</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#medias">Multimédias/loisirs</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#autre">Autre</a>
-  </li>
+  {% endfor %}
 </ul>
 
 <!-- End Navigation CATEGORIES -->
 
 <!-- Carousel -->
 
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
+<div id="carouselExampleSlidesOnly" class="carousel slide mt-3" data-ride="carousel">
+  <div class="carousel-inner radius">
     <div class="carousel-item active">
         <div class="texte texte1">" - This object has already been loved once. "</div>
         <img src="https://cdn.pixabay.com/photo/2016/05/28/00/06/gift-1420830_1280.jpg" class="d-block w-100" alt="...">
