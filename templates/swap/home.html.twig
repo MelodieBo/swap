@@ -15,6 +15,7 @@
 
     .radius {
       border-radius: 30px;
+      max-height: 35vh;
     }
 
     .carousel-item .texte {
@@ -32,10 +33,11 @@
 
     .carousel-item .texte2 {
       top: 2rem;
-      left: 18rem;
+      left: 3rem;
       text-align: center;
-      width:45%;
+      width:80%;
     }
+
     .carousel-item .texte3 {
       top: 2rem;
       right: 3rem;
@@ -57,6 +59,22 @@
     span {
       color: #30336b;
     }
+
+    @media (min-width: 768px) { 
+
+      .radius {
+        border-radius: 30px;
+        max-height: 60vh;
+      }
+
+      .carousel-item .texte2 {
+        top: 2rem;
+        left: 18rem;
+        text-align: center;
+        width:45%;
+      }
+
+    }
   </style>
 
 {% endblock %}
@@ -77,48 +95,57 @@
 
 <!-- Carousel -->
 
-<div id="carouselExampleSlidesOnly" class="carousel slide mt-3" data-ride="carousel">
-  <div class="carousel-inner radius">
-    <div class="carousel-item active">
-        <div class="texte texte1">" - This object has already been loved once. "</div>
-        <img src="https://cdn.pixabay.com/photo/2016/05/28/00/06/gift-1420830_1280.jpg" class="d-block w-100" alt="MainGift1">
-    </div>
-    <div class="carousel-item">
-      <div class="texte texte2">" This object has already been loved once. "</div>
-      <img src="https://cdn.pixabay.com/photo/2019/12/03/07/34/gift-4669449_1280.jpg" class="d-block w-100" alt="MainGift2">
-    </div>
-    <div class="carousel-item">
-      <div class="texte texte3">" This object has already been loved once. "</div>
-      <img src="https://cdn.pixabay.com/photo/2017/12/05/05/34/gifts-2998593_1280.jpg" class="d-block w-100" alt="MainGift3">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+    
+        <div id="carouselExampleSlidesOnly" class="carousel slide mt-3" data-ride="carousel">
+          <div class="carousel-inner radius">
+            <div class="carousel-item active">
+                <div class="texte texte1">" - This object has already been loved once. "</div>
+                <img src="https://cdn.pixabay.com/photo/2016/05/28/00/06/gift-1420830_1280.jpg" class="d-block w-100" alt="MainGift1">
+            </div>
+            <div class="carousel-item">
+              <div class="texte texte2">" This object has already been loved once. "</div>
+              <img src="https://cdn.pixabay.com/photo/2019/12/03/07/34/gift-4669449_1280.jpg" class="d-block w-100" alt="MainGift2">
+            </div>
+            <div class="carousel-item">
+              <div class="texte texte3">" This object has already been loved once. "</div>
+              <img src="https://cdn.pixabay.com/photo/2017/12/05/05/34/gifts-2998593_1280.jpg" class="d-block w-100" alt="MainGift3">
+            </div>
+          </div>
+        </div>
+    
     </div>
   </div>
 </div>
 
 
+
 <div class="container" style="margin-top: 20px;">
-    <div class="row" style="display: flex;align-items: center;justify-content: center;">
+    <div class="row" style="display: flex;align-items: center;justify-content: space-between;">
+
       {% for produit in produits %}
 
-          <div class="col-4 card mt-3">
-              <h4 class="card-header">{{ produit.titre }}</h4>
-              <div class="card-footer text-muted">
-              Ajouté le {{ produit.CreeLe ? produit.CreeLe|date('d-m-Y')}}
+          <div class="col-12 col-lg-3 card m-1" style="border-radius: 15px; ">
+            <h5 class="card-header">{{ produit.titre }}</h5>
+            <div class="card-footer text-muted">Ajouté le {{ produit.CreeLe ? produit.CreeLe|date('d-m-Y')}}</div>
+            <img class="imgProduit mt-4" src="uploads/{{ produit.image }}" alt="Card image">
+            <div class="card-body">
+              <p class="card-text">{{ produit.description }}</p>
+              <p class="card-subtitle text-muted">
+                <span class="badge badge-pill badge-info">Catégorie : {{ produit.categorie }}</span>
+              </p>
+            </div>
+            <div class="card-body">
+              <h6>Valeur estimée : {{ produit.valeur }} €</h6>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-12-lg-6">
+                <button type="button" class="btn btn-primary mb-2"><a href="{{ path('fiche_produit', {'id': produit.id}) }}" class="text-white">Voir le produit</a></button>
               </div>
-              <img class="imgProduit mt-4" src="uploads/{{ produit.image }}" alt="Card image">
-              <div class="card-body">
-                <p class="card-text">{{ produit.description }}</p>
-                <p class="card-subtitle text-muted">
-                  <span class="badge badge-pill badge-info">Catégorie : {{ produit.categorie }}</span>
-                </p>
-              </div>
-              <div class="card-body">
-                <h6>Valeur estimée : {{ produit.valeur }} €</h6>
-              </div>
-              <div class="row justify-content-center">
-                <div class="col-12-lg-6">
-                   <button type="button" class="btn btn-primary mb-2"><a href="{{ path('fiche_produit', {'id': produit.id}) }}" class="text-white">Voir le produit</a></button>
-                </div>
-              </div>
+            </div>
+          </div>
 
           {# <div class="col-3 card m-3" style="border-radius: 15px; ">
             <h3 class="card-header">{{ produit.titre }}</h3>
