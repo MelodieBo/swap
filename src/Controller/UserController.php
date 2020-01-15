@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+
 class UserController extends AbstractController
 {
     /**
@@ -15,6 +16,7 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
         $roles = $user->getRoles();
+        dump($roles);
 
         if( in_array("ROLE_ADMIN", $roles) ) {
             return $this->redirectToRoute('admin');

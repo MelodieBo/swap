@@ -24,7 +24,7 @@ class SwapController extends AbstractController
 {
 
 /**
-     * @Route("/{categorie}", name="home", methods={"GET"})
+     * @Route("/catetgorie/{categorie}", name="home", methods={"GET"})
      */
 
     public function home(ProduitRepository $produitRepository, CategorieRepository $categorieRepository, $categorie=null): Response
@@ -42,7 +42,7 @@ class SwapController extends AbstractController
     }
 
     /**
-     @Route("/swap/fiche_produit/{id}", name="fiche_produit")
+     * @Route("/swap/fiche_produit/{id}", name="fiche_produit")
      */
         public function ficheProduit(Produit $produits) {
             dump($produits);
