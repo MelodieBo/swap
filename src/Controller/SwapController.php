@@ -23,8 +23,8 @@ class SwapController extends AbstractController
 
 {
 
-/**
-     * @Route("/catetgorie/{categorie}", name="home", methods={"GET"})
+    /**
+     * @Route("/{categorie}", name="home", methods={"GET"})
      */
 
     public function home(ProduitRepository $produitRepository, CategorieRepository $categorieRepository, $categorie=null): Response
